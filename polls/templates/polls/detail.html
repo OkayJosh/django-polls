@@ -19,8 +19,10 @@
                                 {% csrf_token %}
                                 {% for choice in question.choice_set.all %}
                                 <div class="radio">
-                                    <input type="radio" name="choice" class="" id="choice {{ forloop.counter }}" value="{{ choice.id }}" />
-                                    <label for="choice{{ forloop.counter }}" class="">{{ choice.choice_text}}</label><br/>
+                                    <h1>
+                                            <input type="radio" name="choice" class="" id="choice {{ forloop.counter }}" value="{{ choice.id }}" />
+                                            <label for="choice{{ forloop.counter }}" class="">{{ choice.choice_text}}</label><br/>
+                                    </h1>
                                 </div>
                                 {% endfor %}
                             </div>
