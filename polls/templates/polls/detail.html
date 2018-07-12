@@ -1,12 +1,33 @@
-<h1> {{ question.question_text}} </h1>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/bootstrap.css' %}"/>
+<div class="container">
+    <div class="role">
+            <div class="jumbotron">
+                    <h1 class="text-center"> <strong>{{ question.question_text}} </strong></h1>
+            </div>
+    </div>
+    <div class="role">
+        <div class=".col-md-4">
+        </div>
+        <div class=".col-md-4">
+        </div>
+        <div class=".col-md-4">
+                <div class="jumbotron">
+                        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                        <form role="form" action= "{% url 'polls:vote' question.id %}" method="post" class="form-horizontal"> 
+                            <div class="form-group">
+                                {% csrf_token %}
+                                {% for choice in question.choice_set.all %}
+                                <div class="radio">
+                                    <input type="radio" name="choice" class="" id="choice {{ forloop.counter }}" value="{{ choice.id }}" />
+                                    <label for="choice{{ forloop.counter }}" class="">{{ choice.choice_text}}</label><br/>
+                                </div>
+                                {% endfor %}
+                            </div>
+                                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Vote"/>
+                        </form>
+                </div>
+            </div>
+    </div>
+</div>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
-<form action= "{% url 'polls:vote' question.id %}" method="post"> 
-    {% csrf_token %}
-    {% for choice in question.choice_set.all %}
-        <input type="radio" name="choice" id="choice {{ forloop.counter }}" value="{{ choice.id }}" />
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text}}</label><br/>
-    {% endfor %}
-    <input type="submit" value="Vote"/>
-</form>
