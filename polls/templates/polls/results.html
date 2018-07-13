@@ -1,31 +1,18 @@
-{% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'polls/bootstrap.css' %}"/>
-<div class="container">
-                <div class="role">
-                        <div class="jumbotron">
-                                <h1 class="text-center"><strong>{{ question.question_text}}</strong></h1>
-                        </div>
-                        </div>
-                        <div class="role">
-                            <div class=".col-md-4">
-                        
-                            </div>
-                            <div class=".col-md-4">
-                        
-                            </div>
-                            <div class=".col-md-4">
-                                <div class="jumbotron">
-                                        <ul class="text-center">
-                                                {% for choice in question.choice_set.all %}
-                                                <h1>
-                                                        <li> {{ choice.choice_set}} -- {{ choice.votes }} vote{{ choice.votes|pluralize}} </li>
-                                                </h1>
-                                                {% endfor %}
-                                            </ul>
-                                            <h1>
-                                               <a href="{% url 'polls:detail' question.id %}"> Vote Again?</a>   
-                                            </h1>
-                                </div>
-                            </div>
-                        </div>
+{% extends "polls/base.html" %}
+{% block content%}
+<div class="jumbotron">
+                <h1 class="text-center"><strong>{{ question.question_text}}</strong></h1>
 </div>
+<div class="jumbotron">
+        <ul class="text-center">
+                {% for choice in question.choice_set.all %}
+                <h1>
+                        <li> {{ choice.choice_set}} -- {{ choice.votes }} vote{{ choice.votes|pluralize}} </li>
+                </h1>
+                {% endfor %}
+                </ul>
+                <h1>
+                <a href="{% url 'polls:detail' question.id %}"> Vote Again?</a>   
+                </h1>
+</div>
+{% endblock %}
