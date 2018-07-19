@@ -9,6 +9,7 @@ django = "*"
 "psycopg2-binary" = "*"
 gunicorn = "*"
 django-heroku = "*"
+procfile = "*"
 
 [dev-packages]
 
