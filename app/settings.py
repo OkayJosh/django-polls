@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4y(p21%inxl4i_)am^6==kw4_a0moau7%2hag7-@b6gl)ro7(k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['repollapp.heroku.com']
 
 
 # Application definition
